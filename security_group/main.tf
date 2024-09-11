@@ -3,6 +3,13 @@ resource "aws_security_group" "this" {
   name          = var.sg_name
   description   = var.description
   ingress {
+    description = "Allow [newone] from anywhere"
+    from_port = var.ingress_port
+    to_port = var.ingress_port
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
     description = "Allow fastapi from anywhere"
     from_port = var.ingress_port_fastapi
     to_port = var.ingress_port_fastapi
