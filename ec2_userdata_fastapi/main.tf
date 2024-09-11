@@ -1,6 +1,6 @@
 # fastapi 앱을 설치하는 user-data
 
-data "template_file" "fastapi_userdata" {
+data "template_file" "userdata_fastapi" {
   template = <<-EOF
     # FastAPI / Uvicorn 설치
     /home/ubuntu/miniconda3/bin/conda install -y python=3.10
