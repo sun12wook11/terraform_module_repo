@@ -13,3 +13,19 @@ variable "ingress_port" {
   description = "ingress port number of SG"
   type = number
 }
+variable "ingress_port_fastapi" {
+  description = "ingress port number of SG"
+  type = number
+}
+variable "ingress_port_nginx" {
+  description = "ingress port number of SG"
+  type = number
+}
+variable "ingress_port_mariadb" {
+  description = "ingress port number of SG"
+  type = number
+}
+variable "ingress_port_ssh" {
+  description = "ingress port number of SG"
+  type = number
+}
