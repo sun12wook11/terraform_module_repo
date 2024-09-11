@@ -9,7 +9,7 @@ variable "description" {
   type = string
 }
 
-variable "ingrees_port" {
-  description = "ingrees port number of SG"
+variable "ingress_port" {
+  description = "ingress port number of SG"
   type = number
 }
