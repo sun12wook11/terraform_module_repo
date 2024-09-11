@@ -4,8 +4,8 @@ resource "aws_security_group" "this" {
   description   = var.description
   ingress {
     description = "Allow mariadb from anywhere"
-    from_port = var.ingrees_port
-    to_port = var.ingrees_port
+    from_port = var.ingress_port
+    to_port = var.ingress_port
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
