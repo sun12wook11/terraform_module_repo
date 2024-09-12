@@ -1,6 +1,6 @@
 # nginx를 설치하는 user-data
 
-data "template_file" "nginx_userdata" {
+data "template_file" "userdata_nginx" {
   template = <<-EOF
     apt install -y curl gnupg2 ca-certificates lsb-release ubuntu-keyring
     curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
