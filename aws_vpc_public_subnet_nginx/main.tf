@@ -1,8 +1,9 @@
 # public_subnet_nginx 생성
 resource "aws_subnet" "public_subnet_nginx" {
-  vpc_id = var.vpc_id
-  public_subnet_nginx_cidr_block         = var.public_subnet_nginx_cidr_block  # CIDR 블록 설정
-  public_subnet_nginx_availability_zone  = var.public_subnet_nginx_availability_zone  # 가용 영역 설정
+  vpc_id                  = var.vpc_id
+  cidr_block              = var.public_subnet_nginx_cidr_block
+  availability_zone       = var.public_subnet_nginx_availability_zone
+  map_public_ip_on_launch = true
   public_subnet_nginx_name = { Name = var.public_subnet_nginx_name }
 }
 # 인터넷 게이트 웨이
