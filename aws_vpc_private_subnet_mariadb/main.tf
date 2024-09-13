@@ -12,7 +12,7 @@ resource "aws_eip" "private_subnet_mariadb_eip" {
   tags = { Name =  "${var.private_subnet_mariadb_name}_eip" }
 }
 resource "aws_nat_gateway" "private_subnet_mariadb_natgw" {
-  aws_vpc_public_subnet_nginx = var.aws_vpc_public_subnet_nginx
+  aws_vpc_public_subnet_nginx = var.public_subnet_nginx_id
   allocation_id = aws_eip.private_subnet_mariadb_eip.allocation_id # allocation_id 참조
   tags = { Name = "${var.private_subnet_mariadb_name}_natgw" }
 }

@@ -1,16 +1,18 @@
 # 프라이빗 서브넷 생성
 resource "aws_subnet" "private_subnet_fastapi" {
   vpc_id                  = var.vpc_id
-  private_subnet_fastapi_cidr_block = var.private_subnet_fastapi_cidr_block # CIDR 블록 설정 2,3 프라이빗
-  private_subnet_fastapi_availability_zone = var.private_subnet_fastapi_availability_zone  # 가용 영역 설정
+  cidr_block              = var.private_subnet_fastapi_cidr_block
+  availability_zone      = var.private_subnet_fastapi_availability_zone
+  map_public_ip_on_launch = false
   tags = { Name = var.private_subnet_fastapi_name }
 }
 # NAT 게이트웨이 생성 및 연결
 resource "aws_eip" "private_subnet_fastapi_eip" {
   domain = "vpc"
-  depends_on = [var.public_subnet_nginx_igw_id]
+  # depends_on = [var.public_subnet_nginx_igw_id]
   tags = { Name = "${var.private_subnet_fastapi_name}_eip" }
 }
+
 resource "aws_nat_gateway" "private_subnet_fastapi_natgw" {
   subnet_id = var.public_subnet_nginx_id
   allocation_id = aws_eip.private_subnet_fastapi_eip.allocation_id # allocation_id 참조

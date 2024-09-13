@@ -18,3 +18,7 @@ variable "private_subnet_mariadb_name" {
   description = "Name tag for the resources."
   type        = string
 }
+variable "public_subnet_nginx_id" {
+  description = "The ID of the public subnet for the Nginx NAT gateway."
+  type        = string
+}
