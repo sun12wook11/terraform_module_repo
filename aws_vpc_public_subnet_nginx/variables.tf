@@ -1,7 +1,7 @@
-# variable "instance_name" {
-#   description = "id of instance_name"
-#   type = string
-# }
+variable "vpc_id" {
+  description = "id of vpc"
+  type = string
+}
 variable "public_subnet_nginx_cidr_block" {
   description = "id of public_subnet_nginx_cidr_block"
   type = string
@@ -33,7 +33,7 @@ variable "inbound_ports" {
   description = "id of inbound_ports"
   type = list(object({
     port = number
-    protocol = string
-    cidr_blocks = list(string)
+    protocol = optional(string, "tcp") # optional 테라폼 1.3.0이상만 사용가능
+    cidr_blocks = optional(list(string), ["0.0.0.0/0"])
   }))
 }

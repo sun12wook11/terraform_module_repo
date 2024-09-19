@@ -4,12 +4,12 @@ resource "aws_subnet" "public_subnet_nginx" {
   cidr_block              = var.public_subnet_nginx_cidr_block
   availability_zone       = var.public_subnet_nginx_availability_zone
   map_public_ip_on_launch = true
-  public_subnet_nginx_name = { Name = var.public_subnet_nginx_name }
+ tags = { Name = var.public_subnet_nginx_name }
 }
 # 인터넷 게이트 웨이
 resource "aws_internet_gateway" "public_subnet_nginx_igw" {
   vpc_id                  = var.vpc_id
-  public_subnet_nginx_igw = { Name = var.public_subnet_nginx_igw_name}
+  tags = { Name = var.public_subnet_nginx_igw_name}
 }
 # 라우팅 테이블 생성 및 인터넷 게이트웨이 연결
 resource "aws_route_table" "public_subnet_nginx_rtb" {
@@ -34,8 +34,8 @@ resource "aws_security_group" "public_subnet_nginx_sg" {
   vpc_id                  = var.vpc_id
 
   dynamic "ingress" {
-    for_each = var.inbound_ports
-    content {
+    for_each = var.inbound_ports # 반복요소명 자정
+    content {                    # 반복할 내용 정의
     from_port   = ingress.value.port
     to_port     = ingress.value.port
     protocol    = ingress.value.protocol
