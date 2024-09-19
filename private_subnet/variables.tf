@@ -21,11 +21,3 @@ variable "public_subnet_id" {
 variable "public_igw_id" {
   type = string
 }
-
-variable "subnets" {
-  type = map(object({
-    cidr_block = string
-    avail_zone = string
-    ingress_port = list(number)
-  }))
-}
