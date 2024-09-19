@@ -42,7 +42,7 @@ resource "aws_route_table_association" "public_rtbasso" {
 }
 
 # 보안그룹 생성
-resource "aws_security_group" "public_sg" {
+resource "aws_security_group" "public_subnet_sg" {
   name = "${var.instance_name}_public_sg"
   vpc_id = aws_vpc.vpc.id
 
