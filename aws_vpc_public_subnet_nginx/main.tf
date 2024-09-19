@@ -33,19 +33,16 @@ resource "aws_route_table_association" "public_subnet_nginx_rtbasso" {
 resource "aws_security_group" "public_subnet_nginx_sg" {
   vpc_id                  = var.vpc_id
 
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  dynamic "ingress" {
+    for_each = var.inbound_ports
+    content {
+    from_port   = ingress.value.port
+    to_port     = ingress.value.port
+    protocol    = ingress.value.protocol
+    cidr_blocks = ingress.value.cidr_blocks
+    }
   }
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 
   egress {
     from_port   = 0
