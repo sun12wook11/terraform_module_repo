@@ -46,7 +46,7 @@ resource "aws_route_table_association" "private_rtb_asso" {
 
 #---
 
-resource "aws_security_group" "private_sg" {
+resource "aws_security_group" "private_subnet_sg" {
   for_each = var.subnets
   name = "${var.instance_name}_private_sg_${each.key}"
   vpc_id = var.vpc_id
